@@ -4,10 +4,14 @@ require('dotenv').config();
 
 const API_KEY = process.env.API_KEY;
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(express.static('public'));
 app.use(express.json());
+
+app.get('/', (req, res) => {
+    res.send('Welcome to the Weather API');
+});
 
 app.get('/weather', async (req, res) => {
     const city = req.query.city ;
